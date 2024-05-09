@@ -11,13 +11,43 @@ function CareerList() {
     const handleClearSearch = () => {
         setSearchTerm("")
     }
-    const filteredCareers = careers.filter(career=>{
-        career.title.toLowerCase().includes(searchTerm.toLowerCase()) || career.description.toLowerCase().includes(searchTerm.toLowerCase())
-    })
+    const filteredCareers = careers.filter(career => {
+        const searchTokens = searchTerm.toLowerCase().split(/\s+/);
+        const lowerCaseTitle = career.title.toLowerCase();
+        const lowerCaseDescription = career.description.toLowerCase();
+    
+        return searchTokens.some(token => {
+            return (
+                lowerCaseTitle.includes(token) ||
+                lowerCaseDescription.includes(token)
+            );
+        });
+    }).sort((a, b) => {
+        const aTitle = a.title.toLowerCase();
+        
+        const bTitle = b.title.toLowerCase();
+    
+
+        const aIndex = aTitle.indexOf(searchTerm.toLowerCase());
+        
+        const bIndex = bTitle.indexOf(searchTerm.toLowerCase());
+    
+        if (aIndex === 0 && bIndex !== 0) {
+            return -1;
+        } else if (bIndex === 0 && aIndex !== 0) {
+            return 1;
+        }
+
+        
+        
+        return aTitle.localeCompare(bTitle);
+    });
+    
+    
   return (
     <div>
       <h2>Careers</h2>
-      <div>
+      <div className="search-container">
         <input type='text' value={searchTerm} onChange={handleSearchChange} placeholder='search careers...'/>
         {searchTerm && (<button onClick={handleClearSearch}>
         <svg
