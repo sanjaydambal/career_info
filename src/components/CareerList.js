@@ -66,10 +66,13 @@ function CareerList() {
       </div>
       <ol>
         {
-            filteredCareers.map(career =>(<li key={career.id}>
-{career.title}:{career.description}
-            </li>))
-        }
+            filteredCareers.map(career =>
+             <div className="career-card" key={career.id}>
+            <h3>{career.title}</h3>
+            <p>{career.description}</p>
+        </div>
+          
+        )}
       </ol>
     </div>
   )
