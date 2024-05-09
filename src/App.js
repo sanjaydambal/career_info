@@ -1,11 +1,16 @@
-import logo from './logo.svg';
+
 import './App.css';
 import CareerList from './components/CareerList';
 
 function App() {
   return (
     <div className="App">
-      <CareerList/>
+      <header className="App-header">
+       <h1>Welcome to Career Information Portal</h1>
+      </header>
+      <main>
+        <CareerList/>
+      </main>
     </div>
   );
 }
