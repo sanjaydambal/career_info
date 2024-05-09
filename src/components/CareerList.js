@@ -1,6 +1,7 @@
 import React from 'react'
 import careers from '../mockdata/data';
 import { useState } from 'react';
+import "./CareerList.css";
 
 function CareerList() {
     const [searchTerm,setSearchTerm] = useState("")
