@@ -24,12 +24,10 @@ function CareerList() {
         });
     }).sort((a, b) => {
         const aTitle = a.title.toLowerCase();
-        
         const bTitle = b.title.toLowerCase();
     
-
+        // Sort by full token match first
         const aIndex = aTitle.indexOf(searchTerm.toLowerCase());
-        
         const bIndex = bTitle.indexOf(searchTerm.toLowerCase());
     
         if (aIndex === 0 && bIndex !== 0) {
@@ -37,9 +35,8 @@ function CareerList() {
         } else if (bIndex === 0 && aIndex !== 0) {
             return 1;
         }
-
-        
-        
+    
+        // Then sort alphabetically
         return aTitle.localeCompare(bTitle);
     });
     
